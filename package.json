@@ -1,0 +1,21 @@
+{
+  "name": "backend01",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/utkarsh1480/Backend-01-Basics#readme",
+  "bugs": {
+    "url": "https://github.com/utkarsh1480/Backend-01-Basics/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utkarsh1480/Backend-01-Basics.git"
+  },
+  "license": "ISC",
+  "author": "UTKARSH",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+}
