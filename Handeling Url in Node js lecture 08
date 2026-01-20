@@ -1,0 +1,63 @@
+```
+const http = require('http');
+const fs = require('fs');
+const url = require('url');
+
+
+const server = http.createServer((req , res) => { //req,res = objects re
+      if(req.url === '/favicon.ico') return res.end();
+
+ //1768902764306: /about?name=%22utkarsh New req recieves
+     //but when we pass like this it will give 404 beacuse http module does not pase this url for this we need external package
+
+    const log = `${Date.now()}: ${req.url} New req recieves\n`;
+    const myUrl = url.parse(req.url, true); // it means we tell we need to parse query paremeter
+    console.log(typeof myUrl)
+
+// Url {
+//   protocol: null,
+//   slashes: null,
+//   auth: null,
+//   host: null,
+//   port: null,
+//   hostname: null,
+//   hash: null,
+//   search: '?name=%22utkarsh',
+//   query: 'name=%22utkarsh',
+//   pathname: '/about',
+//   path: '/about?name=%22utkarsh',
+//   href: '/about?name=%22utkarsh'
+// }
+
+// if true query: [Object: null prototype] { name: '"utkarsh', id: '1', my: '3' }, 
+
+    console.log(myUrl);
+    fs.appendFile('log.txt',log, (error, data) =>{
+      
+    
+
+
+
+
+         switch (myUrl.pathname) {
+            case '/about':
+                const username = myUrl.query.name;
+                res.end(`hi ${username}`);
+                break;
+            case '/search' :
+                const search =   myUrl.query.search_query;
+                res.end(`here is the your result relate to ` + search)
+                break; 
+            default:
+                res.end("404 Not found");
+         }
+    }); 
+   
+   
+  
+
+});
+server.listen(4000, ()=>{
+    console.log("Server is listening on port 4000");
+}); 
+```
