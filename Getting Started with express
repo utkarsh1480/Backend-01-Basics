@@ -1,0 +1,25 @@
+const http = require('http')
+const express = require('express'); // framework
+const app = express();
+console.log(`hi ${typeof app}`);
+console.log(app);
+
+app.get('/', (req, res) =>{
+    res.end("hello From about page")
+});
+
+app.get('/about', (req, res) =>{
+    res.end("hello From about1 page")
+});
+
+app.post('/email', (req,res) =>{
+    console.log("hi");
+})
+
+app.listen(8000, () => {
+ console.log("Server is Running");
+}) //  internally it require http module
+// const myServer = http.createServer(app);
+// myServer.listen(3000, (req,res)=>{
+   
+// });
