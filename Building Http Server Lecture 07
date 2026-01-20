@@ -1,1 +1,33 @@
 LECTURE 07 HOW INTERNALLY SERVER IS CREATED
+// console.log("Hello, World!");
+// const name = require('./math');
+// console.log(typeof(name));
+// // console.log(`Hello, ${name.name}!`);
+// // console.log(name.summ(2,3));
+// // console.log(name.sub(3,2));
+// console.log(name.add(2,3));
+// // console.log(name.diff(2,3));
+
+/// Server creation
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req , res) => { //req,res = objects re
+    const log = `${Date.now()}: ${req.url} New req recieves\n`;
+    fs.appendFile('log.txt',log, (error, data) =>{
+         switch (req.url) {
+            case '/about':
+                res.end("About page");
+                break;
+            default:
+                res.end("404 Not found");
+         }
+    });
+   
+   
+  
+
+});
+server.listen(4000, ()=>{
+    console.log("Server is listening on port 4000");
+}); 
