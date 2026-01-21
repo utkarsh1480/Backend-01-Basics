@@ -1,0 +1,101 @@
+const express = require('express');
+const app = express();
+const users = require('./DATA.json');
+
+const fs = require('fs');
+
+app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+    console.log("hello form middleware 1")// if we not use next() it will stuck here
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log("hello form middleware 2")
+    next();
+
+});
+
+app.use((req, res, next) => {
+    fs.appendFile('./log.txt', `\n  ${Date.now()} : ${req.ip} : ${req.method}: ${req.url}`, (err, data) => {
+        next();
+    });
+    });
+
+
+// REST API
+
+app.get('/api/user', (req, res) => {
+    const html = `
+    <ul>
+    ${users.map((user) => `<li> ${user.first_name} </li>`
+    ).join()}
+
+    </ul>`;
+    res.send(html);
+});
+
+
+app.get('/user', (req, res) => {
+    res.json(users);
+});
+
+
+app.get('/username', (req, res) => {
+    res.end(users.forEach((user) => console.log(user.first_name)));
+}); // beacuse it is an array
+
+
+app.route('/api/user/:id')
+    .get((req, res) => {
+        const id = Number(req.params.id);
+        const user = users.find((user) => user.id === id);
+        res.json(user);
+    })
+
+    .patch((req, res) => {
+        const id = Number(req.params.id);
+        const user = users.find((u) => u.id === id);
+        console.log(typeof user);
+        for(const key of Object.keys(req.body)){
+            user[key] = req.body[key];
+        }
+        fs.writeFile('./DATA.json', JSON.stringify(users), (err) => {
+            if (err) {
+                console.error('Error writing DATA.json:', err);
+                return res.status(500).json({ error: 'Failed to update data file' });
+            }
+            res.json({ status: 'updated', user: user });
+        });
+        })
+    .delete((req, res) => {
+        const id = Number(req.params.id);
+        const index = users.findIndex((u) => u.id === id);
+        const removed = users.splice(index, 1)[0];
+
+        fs.writeFile('./DATA.json', JSON.stringify(users), (err) => {
+            if (err) {
+                console.error('Error writing DATA.json:', err);
+                return res.status(500).json({ error: 'Failed to update data file' });
+            }
+            res.json({ status: 'deleted', user: removed });
+        });
+    })
+    .put((req, res) => {
+
+        res.json({ Status: "Pending" });
+    });
+
+app.post('/api/user', (req, res) => {
+    const body = req.body; 
+
+    users.push({ ...body , id: users.length + 1 });
+    fs.writeFile('./DATA.json', JSON.stringify(users), (err, data) => {
+        return res.json({ Status: "User Added" });
+    });
+});
+// always learn one variable send at a time
+
+app.listen(3000, () => {
+    console.log("Swerver is running");
+})
