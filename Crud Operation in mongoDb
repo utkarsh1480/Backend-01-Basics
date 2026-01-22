@@ -1,0 +1,121 @@
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+// connection
+mongoose.connect("mongodb://127.0.0.1:27017/learning-1")// kearning is database name. // it return promice
+    .then(() => console.log("MongoDB connected"))
+    .catch((err) => console.log(err));
+
+const userSchema = new mongoose.Schema({
+    first_name: {
+        type: String,
+        required: true
+    },
+    last_name: {
+        type: String,
+       
+    },
+    email: {
+        type: String,
+        require: true,
+        unique: true
+    },
+    job_title: {
+        type: String
+    },
+    gender: {
+        type: String
+    }
+
+}, { timestamps : true });
+const user = mongoose.model('user', userSchema); 
+
+
+app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+    console.log("hello form middleware 1")// if we not use next() it will stuck here
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log("hello form middleware 2")
+    next();
+
+});
+
+
+
+// REST API
+
+app.get('/user', async (req, res) => {
+    const allUser = await user.find({});// means all user
+    const html = `
+    <ul>
+    ${allUser.map((User) => `<li>  ${User.first_name}</li>`
+    ).join()}
+
+    </ul>`;
+    res.send(html);
+});
+
+app.route('/api/user/:id')
+    .get(async (req, res) => {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({ error: "Invalid ID format" });
+        }
+        const users = await user.findById(req.params.id);
+        if (!users) return res.status(404).json({ error: "User Not Found" });
+        return res.json(users);
+    })
+
+    .patch(async(req, res) => {
+
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({ error: "Invalid ID format" })
+        }
+        const users = await user.findByIdAndUpdate(req.params.id, {last_name : "Changed"});
+        res.status(200).json(users);
+        })
+    
+    
+    .delete(async (req, res) => {
+        const users = await user.findByIdAndDelete(req.params.id);
+        console.log(users);
+        res.json({Status: "Completed"});
+        
+      
+    })
+    .put((req, res) => {
+
+        res.json({ Status: "Pending" });
+    });
+
+app.post('/api/user', async (req, res) => {
+    const body = req.body;
+
+    if (
+        !body ||
+        !body.first_name ||
+        !body.last_name ||
+        !body.email ||
+        !body.gender ||
+        ! body.job_title
+    ) {
+        return res.status(200).json({ status : "Failed" });
+    }
+    const result = await  user.create({
+        first_name : body.first_name,
+        last_name: body.last_name,
+        email : body.email,
+        job_title: body.job_title,
+        gender: body.gender
+    })
+    console.log(result)
+
+    return res.status(200).json({ Status: "Sucess" });
+});
+// always learn one variable send at a time
+
+app.listen(3000, () => {
+    console.log("Swerver is running");
+})
