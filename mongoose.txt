@@ -1,0 +1,38 @@
+```
+
+Fisrt we create schema(Structure)
+Create Model using schem;
+use these model to define collection
+
+// Steps to implement MongoDB
+step01 : const mongoose = require('mongoose') (Built-in package require)
+ste02 : Now connect your MongoDb {
+
+     first you hava to copy your mongodb host link
+     mongoose.connert(link/DB_Name); // It return Promise
+     .then()
+     .catch()
+}
+Step03 : create Schem  {
+
+    ///
+    const userSchema = new mongoose.Schema({
+        first_name :{
+            type : String,
+            unique : true;
+            required : true
+        }
+    }, {timestamps : true} // this will tell about the entry and updation time) 
+}
+
+Step04 : Create Model. const user = mongoose.model('user', userSchema); 
+
+// mongodb automatically add a unique id 
+// unique id have fixed formate and length
+?/to check validdity of id ˇ\if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(400).json({ error: "Invalid ID format" });
+
+
+
+
+  
