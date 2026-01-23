@@ -1,5 +1,5 @@
 ```
-          Node Js Article
+Node Js Article
 
 ```
 
@@ -16,8 +16,7 @@ const path = require('path')
 const os = require('os')
 ```
 
-```
- require is dynamic and runtime-based, while import is static and resolved at compile time.
+```require is dynamic and runtime-based, while import is static and resolved at compile time.
     require : anywhere , conditional
     import  : used in EJS, always at the top of tree, 
 ```
