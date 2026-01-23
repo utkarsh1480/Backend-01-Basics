@@ -9,7 +9,7 @@ You Thing ever all the modules firstly Install but Http module directly required
 
 if You Remember We install Node js module So By default Node module consist 4  pre-installed with Node.js itself.
 
-```
+```coremodule
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
