@@ -81,7 +81,7 @@ search=somethind - query parameter
 ```js
 const url = require("url');
 ```
----href: The full URL that was originally parsed. Both the protocol and host are lowercased.---
+```---href: The full URL that was originally parsed. Both the protocol and host are lowercased.---
 
 Example: 'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'
 
@@ -124,6 +124,7 @@ Example: 'query=string' or {'query':'string'}
 --hash: The 'fragment' portion of the URL including the pound-sign.
 
 Example: '#hash'
+```
 
 
 
