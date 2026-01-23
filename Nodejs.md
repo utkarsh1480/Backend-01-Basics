@@ -43,15 +43,15 @@ Node.js resolves modules in this order:
 ```diff
 - require(): dynamic and runtime-based
 + import: static and resolved at compile time
-```
+
 
  Because without ./, Node looks inside node_modules, not current directory. 
-```
+```js
 Node resolves modules by checking core modules, local files, and then node_modules upward.
 require is dynamic CommonJS, while import is static ES Modules.
 Core modules don’t need installation, npm packages do.
 
-```
+
 
 ```
     Basic Server Creation 
