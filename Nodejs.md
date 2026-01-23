@@ -126,6 +126,56 @@ Example: 'query=string' or {'query':'string'}
 Example: '#hash'
 ```
 
+--Req.query--
+req.query is an object, but all query parameter values are strings because URLs transmit text only.
+Important Interview Trap 🚨
+[Object: null prototype] once you studied about prototype the investigate this topic here hacker exploitation is hidden
+```js
+❓ Is req.query.id === 1 true?
+
+❌ NO
+✔ req.query.id === '1'
+```
+
+```js
+### Why this  req.query['id'] Insted of req.query
+
+✅ If:
+
+Key is a valid JavaScript identifier
+
+No spaces
+
+No special characters
+
+Doesn’t start with a number
+
+```js
+## use [''] if
+--Key has special characters--
+--Key starts with a number--
+--🚨 Case 3: Dynamic key (interview favorite)
+const key = 'id'
+req.query[key]   // ✅
+req.query.key    // ❌ looks for literal "key"--
+--Reserved words or weird keys
+/?class=10
+req.query['class'] // safer--
+```
+
+
+### 4️⃣ Why interviews prefer ['id'] sometimes 🧠
+
+Because:
+
+It works in all cases
+
+Safer for dynamic access
+
+Avoids edge-case bugs
+
+📌 Especially in frameworks like Express, keys come from user input.
+
 
 
 
