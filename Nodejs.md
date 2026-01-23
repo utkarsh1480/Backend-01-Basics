@@ -4,17 +4,37 @@ Node Js Article
 ```
 
 ```  HTTP Module ```
-You Thing ever all the modules firstly Install but Http module directly required Why ????
+# 🚀 Node.js Basics
 
+This README explains **Node.js core modules**, **why HTTP does not need installation**, **module resolution**, and the **difference between `require` and `import`**, with examples.
 
-if You Remember We install Node js module So By default Node module consist 4  pre-installed with Node.js itself.
+---
 
-```coremodule
+## 📦 HTTP Module (Core Module)
+
+Many beginners think **every module must be installed first**, but the **HTTP module works without installation**.
+
+### ❓ Why can we directly require `http`?
+
+When you install **Node.js**, it already includes some **core modules**.  
+These modules are **pre-installed and bundled with Node.js itself**.
+
+---
+
+## ✅ Core Modules (No Installation Required)
+
+```js
 const http = require('http')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
-```
+
+Node.js resolves modules in this order:
+1. Core modules
+2. Local files (./ or ../)
+3. node_modules (searching upward)
+
+
 
 ```require is dynamic and runtime-based, while import is static and resolved at compile time.
     require : anywhere , conditional
@@ -44,7 +64,7 @@ Core modules don’t need installation, npm packages do.
     
 ```
 
--- some special command --
+-- some special command -- 
 req.header //extra data( meta data - Data About data)
 Date.now() // create new date
 
