@@ -23,13 +23,17 @@ const os = require('os')
     import  : used in EJS, always at the top of tree, 
  ```
 
-``` Because without ./, Node looks inside node_modules, not current directory. ```
-```  Node resolves modules by checking core modules, local files, and then node_modules upward.
-require is dynamic CommonJS, while import is static ES Modules.
-Core modules don’t need installation, npm packages do. ```
-
-``` Basic Server Creation ```
+ Because without ./, Node looks inside node_modules, not current directory. 
 ```
+Node resolves modules by checking core modules, local files, and then node_modules upward.
+require is dynamic CommonJS, while import is static ES Modules.
+Core modules don’t need installation, npm packages do.
+
+```
+
+```
+    Basic Server Creation 
+
     const http = require('http');
     const server = http.createServer((req,res) =>{
     // do anything you want
