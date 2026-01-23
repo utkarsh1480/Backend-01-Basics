@@ -1,12 +1,12 @@
 ```
-                                                                              Node Js Article
+          Node Js Article
 
 ```
 
 ```  HTTP Module ```
 You Thing ever all the modules firstly Install but Http module directly required Why ????
 
-```
+
 if You Remember We install Node js module So By default Node module consist 4  pre-installed with Node.js itself.
 
 ```
@@ -14,12 +14,13 @@ const http = require('http')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
-
 ```
 
-``` require is dynamic and runtime-based, while import is static and resolved at compile time.
+```
+ require is dynamic and runtime-based, while import is static and resolved at compile time.
     require : anywhere , conditional
-    import  : used in EJS, always at the top of tree,  ```
+    import  : used in EJS, always at the top of tree, 
+```
 
  Because without ./, Node looks inside node_modules, not current directory. 
 ```
