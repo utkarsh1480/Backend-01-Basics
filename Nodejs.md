@@ -176,7 +176,46 @@ Avoids edge-case bugs
 
 📌 Especially in frameworks like Express, keys come from user input.
 
+##Cacheable - Cacheable means data or a response that can be stored temporarily and reused to improve performance and reduce repeated computation.
 
+### HTTPS Method
+
+```js
+###POST METHOD
+POST sends data in body
+Needs middleware to parse
+Used for create operations
+Not cached
+Supports large payloads
+
+###POST data goes in the request body
+⚠️ Without express.json(), req.body will be undefined. // it is a middleware which parse the data which comming from backend
+###req.body is an object containing data sent by client.
+
+### METHODS
+req.body(),
+req.header() it retuern ther meta data ,means data about data
+req.params() parameters post/url/:id
+req.query() Query
+res.send() normal string send
+res.json({}) json formate data is send for ui
+
+```
+```🖨️
+Can POST have query params?
+
+✔ Yes, but not recommended
+
+❓ Is POST secure?
+
+✔ Safer than GET (data not in URL)
+❌ Not encrypted unless HTTPS
+
+❓ Why body is undefined?
+
+❌ Missing middleware
+✔ Use express.json()
+```
 
 
 
