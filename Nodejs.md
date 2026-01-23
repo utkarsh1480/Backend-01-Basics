@@ -20,6 +20,10 @@ const os = require('os')
     require : anywhere , conditional
     import  : used in EJS, always at the top of tree, 
 ```
+```diff
+- require(): dynamic and runtime-based
++ import: static and resolved at compile time
+```
 
  Because without ./, Node looks inside node_modules, not current directory. 
 ```
