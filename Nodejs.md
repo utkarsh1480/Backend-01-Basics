@@ -53,16 +53,13 @@ Core modules don’t need installation, npm packages do.
 
 
 
-```
-    Basic Server Creation 
+```Basic Server Creation 
 
     const http = require('http');
     const server = http.createServer((req,res) =>{
     // do anything you want
     server.listen(port, () =>{
     console.log("Server is started"); 
-    
-```
 
 -- some special command -- 
 req.header //extra data( meta data - Data About data)
