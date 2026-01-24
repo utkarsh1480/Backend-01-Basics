@@ -292,6 +292,28 @@ Sends that HTML to browser
 
 👉 Used for server-side rendered pages
 
+### Res.end()
+```
+res.end() → End the response (low-level)
+
+res.end() comes from Node.js (http module), not Express specifically.
+
+res.end("Hello");
+
+
+What it does:
+
+Writes data (optional)
+
+Immediately closes the response
+
+Does NO formatting
+
+Does NOT set headers automatically
+
+👉 It just says: “response finished, bye”
+```
+
 
 
 
