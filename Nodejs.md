@@ -129,6 +129,27 @@ Example: '#hash'
 --Req.query--
 req.query is an object, but all query parameter values are strings because URLs transmit text only.
 Important Interview Trap 🚨
+
+an req.query contain arrays?
+✅ YES — but as values, not itself
+
+URL:
+
+/search?tags=js&tags=node&tags=express
+
+req.query
+
+
+Output:
+
+{
+  tags: ['js', 'node', 'express']
+}
+
+
+✔ tags is an array
+❌ req.query is still an object
+
 [Object: null prototype] once you studied about prototype the investigate this topic here hacker exploitation is hidden
 ```js
 ❓ Is req.query.id === 1 true?
@@ -216,6 +237,60 @@ Can POST have query params?
 ❌ Missing middleware
 ✔ Use express.json()
 ```
+### Res.send() and Res.render()
+
+```“res.send() sends data directly to the client, while res.render() generates HTML using a template engine and then sends it.” ```
+### res.send()--
+
+res.send() → Send response directly
+
+Used to send any type of data to the client.
+res.send("Hello World");
+You can send:
+
+string
+
+object
+
+array
+
+Buffer
+
+HTML
+
+res.send({ name: "Utkarsh", role: "Developer" });
+
+
+Express automatically:
+sets Content-Type
+converts object/array → JSON
+
+👉 No template engine involved
+
+res.render() → Render a view (template engine)
+
+Used when you are using a template engine like:
+
+EJS
+
+Pug
+
+Handlebars
+
+res.render("home", { name: "Utkarsh" });
+
+
+What happens:
+
+Express finds home.ejs
+
+Injects data { name: "Utkarsh" }
+
+Converts it into HTML
+
+Sends that HTML to browser
+
+👉 Used for server-side rendered pages
 
 
 
