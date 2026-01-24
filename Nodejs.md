@@ -413,8 +413,8 @@ but this method is loosy
 👉undefined
 👉Map / Set
 ```
-### why JSON.parse is Loosy 
-
+### why JSON.parse is Loosy while Deep copy
+```
 Because JSON only supports a limited set of data types.
 During this conversion, unsupported things are dropped or changed
 
@@ -425,7 +425,7 @@ string,number,boolean,null,plain objects,arrays
 ❌ JSON LOSES / BREAKS
 
 functions,undefined,Date,Map / Set,RegExp,Infinity, NaN,class instances 
-
+```
 
 ###“Use spread or Object.assign for shallow copy, and structuredClone or JSON methods for deep copy depending on data complexity.
 
