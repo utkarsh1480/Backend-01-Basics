@@ -241,7 +241,7 @@ Can POST have query params?
 
 ```“res.send() sends data directly to the client, while res.render() generates HTML using a template engine and then sends it.” ```
 ### res.send()--
-
+```
 res.send() → Send response directly
 
 Used to send any type of data to the client.
@@ -266,8 +266,10 @@ sets Content-Type
 converts object/array → JSON
 
 👉 No template engine involved
+```
 
-res.render() → Render a view (template engine)
+### res.render() → Render a view (template engine)
+```
 
 Used when you are using a template engine like:
 
@@ -276,10 +278,11 @@ EJS
 Pug
 
 Handlebars
+```
 
-res.render("home", { name: "Utkarsh" });
+### res.render("home", { name: "Utkarsh" });
 
-
+```
 What happens:
 
 Express finds home.ejs
@@ -291,8 +294,10 @@ Converts it into HTML
 Sends that HTML to browser
 
 👉 Used for server-side rendered pages
+```
 
 ### Res.end()
+
 ```
 res.end() → End the response (low-level)
 
