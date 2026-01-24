@@ -318,6 +318,116 @@ Does NOT set headers automatically
 
 👉 It just says: “response finished, bye”
 ```
+### Shallow Copy- Shallow copy creates a new object but copies references of nested objects, not their actual values.
+
+
+
+```
+let user = {
+  name: "Utkarsh",
+  address: {
+    city: "Delhi",
+    pin: 110001
+  }
+};
+
+let copyUser = { ...user }; // shallow copy
+
+user --------┐
+             ├──► address (same object)
+copyUser ----┘
+
+copyUser.address.city = "Mumbai";
+
+console.log(user.address.city); // 😱 "Mumbai"
+
+// Object
+let a = { ...obj };
+let b = Object.assign({}, obj);
+
+// Array
+let arr2 = [...arr];
+let arr3 = arr.slice();
+Real Object
+const obj = {
+  name: "A",
+  address: { city: "Delhi" }
+};
+
+const copy = { ...obj };
+Copy Object
+copy = {
+  name: "A",
+  address: { city: "Delhi" }
+};
+{ ...obj } creates a new outer object, but nested objects remain shared because it is a shallow copy
+Use this when object is flat (no nested object)
+Or when you don’t care about nested changes
+```
+### Methods to create Shallow Copy
+
+```
+const user = { name: "Utkarsh", age: 21 };
+const shallowCopy = { ...user };
+
+const shallowCopy = Object.assign({}, user);
+
+const shallowArr = arr.slice();
+
+Use this when object has nested objects
+ API data, Redux state, config objects
+
+
+```
+
+### Deep Copy - Deep copy creates a completely independent copy of an object, including all nested objects.
+```
+user --------► address (object A)
+deepCopy ----► address (object B)
+
+deepCopy.address.city = "Pune";
+
+console.log(user.address.city); // "Delhi" ✅
+
+BEST deep copy method (Modern JS 🔥)
+
+ structuredClone() (placement favorite now)
+let deepCopy = structuredClone(user);
+
+✔ Supports:
+nested objects
+arrays
+Date
+Map / Set
+
+❌ Does NOT copy functions (by design)
+```
+### Methods to create Deep Copy
+```
+const deepCopy = structuredClone(obj);
+
+const deepCopy = JSON.parse(JSON.stringify(obj));
+but this method is loosy
+👉 functions
+👉Date
+👉undefined
+👉Map / Set
+```
+### why JSON.parse is Loosy 
+
+Because JSON only supports a limited set of data types.
+During this conversion, unsupported things are dropped or changed
+
+JSON SUPPORTS
+
+string,number,boolean,null,plain objects,arrays
+
+❌ JSON LOSES / BREAKS
+
+functions,undefined,Date,Map / Set,RegExp,Infinity, NaN,class instances 
+
+
+###“Use spread or Object.assign for shallow copy, and structuredClone or JSON methods for deep copy depending on data complexity.
 
 
 
