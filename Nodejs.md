@@ -429,6 +429,87 @@ functions,undefined,Date,Map / Set,RegExp,Infinity, NaN,class instances
 
 ###“Use spread or Object.assign for shallow copy, and structuredClone or JSON methods for deep copy depending on data complexity.
 
+### MiddleWare
+
+
+
+
+### MiddleWare - Middleware is a function that runs between request and response and has access to req, res, and next.
+### Global middleware
+```
+
+app.use((req, res, next) => {
+  console.log('Time:', Date.now());
+  next();
+});
+
+ ### What this does:
+
+This middleware has NO path
+
+So it runs for:
+/,/user/1,/login
+all HTTP methods (GET, POST, PUT, DELETE)
+next() 
+Tells Express:
+ “Go to the next middleware / route”
+Without next() → request hangs
+```
+
+
+### Path Specific Middleware
+```
+app.use('/user/:id', (req, res, next) => {
+  console.log('Request Type:', req.method);
+  next();
+});
+
+What this does:
+
+Runs ONLY when URL matches /user/:id
+
+Works for:/user/1,/user/42
+Runs for ALL HTTP methods : GET,POST,PUT,DELETE
+
+```
+### what this do
+```
+app.get('/user/:id', (req, res, next) => {
+  res.send('USER');
+});
+What this does:
+
+Handles GET requests only
+This is a route handler
+Sends response → ends request
+app.use() registers middleware for all HTTP methods.
+```
+### Flow of MiddleWare
+```
+Request
+   ↓
+app.use()   // global
+   ↓
+app.use('/user/:id')
+   ↓
+app.get('/user/:id')
+   ↓
+Response
+
+Middleware can block request but route does not able to do that
+```
+
+### Error Handelling Middleware
+```
+Error-handling middleware must have four arguments (err, req, res, next) because Express uses the function’s arity to distinguish it from normal middleware. Without the fourth argument, Express will not treat it as an error handler.
+```
+
+
+
+
+
+
+
 
 
 
