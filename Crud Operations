@@ -76,6 +76,27 @@ app.post('/api/user', (req, res) => {
     const body = req.body; 
 
     users.push({ ...body , id: users.length + 1 });
+------------------------------------------------------------Explanation---------------------------------------------------------------------------------------------------
+“The spread operator creates a new object on every iteration, so each push stores a unique object reference, preventing overwrites even inside loops.”
+“The spread operator creates a single new object and copies all properties into it; the array stores a reference to that object, not individual keys.”
+///Why id comes after ...body (IMPORTANT 🔥)
+Final mental model (remember this)
+
+Spread (...) → copy properties
+
+{} → creates ONE object
+
+push() → stores object reference
+
+Array never stores keys separately
+
+Order matters 👇
+
+{ ...body, id: users.length + 1 }
+
+
+If body already has an id, this overwrites it safely.
+----------------------------------------------------------Explanation End Here--------------------------------------------------------------------------------------------
     fs.writeFile('./DATA.json', JSON.stringify(users), (err, data) => {
         return res.json({ Status: "User Added" });
     });
