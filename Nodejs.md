@@ -635,10 +635,33 @@ bcrypt me:Sirf cost factor and Memory control ❌
 
 
 
+###Jwt Started
 
+JWT (JSON Web Token) = login ke baad milne wala identity token
+Server bolta hai:
 
+JWT payload = user ke baare me non-sensitive info
+why password is not send with JWT payload 
+JWT payload encrypted nahi hota
+Sirf Base64 encoded hota hai
+Koi bhi decode kar sakta hai
 
+###Important Points 
 
+ encoder function atob() kya hota hai? 🔓
+atob() = Base64 decode
+JWT payload:
+Base64 encoded hota hai
+Encrypted nahi
+Example:
+```
+const base64Payload = token.split('.')[1];
+const json = atob(base64Payload);
+console.log(json);
+Output:
+
+{"userId":"123","role":"user","iat":1710000000}
+```
 
 
 
