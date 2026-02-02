@@ -504,6 +504,140 @@ Middleware can block request but route does not able to do that
 Error-handling middleware must have four arguments (err, req, res, next) because Express uses the function’s arity to distinguish it from normal middleware. Without the fourth argument, Express will not treat it as an error handler.
 ```
 
+### Salt in Node js
+```
+salt is the special string which is added in string beforing hashing
+password123$#@9Ksd!
+That random part ($#@9Ksd!) is the salt.
+
+Why do we need salt? 🤔
+
+Without salt 
+If two users have the same password, they get the same hash.
+Hackers can:
+Use rainbow tables
+Pre-compute hashes
+Crack many passwords at once
+With salt 
+Even if two users have the same password:
+Their hashes will be different
+Pre-computed attacks fail
+👉 Salt = extra security layer
+
+
+```
+```
+### Modern way (recommended)
+Libraries like:
+bcrypt
+argon2
+scrypt
+They:
+Generate salt automatically
+Store it inside the hash
+
+
+
+
+```
+```
+### In crypto What Occur
+
+Manual way (Node crypto)
+
+You do everything yourself:
+
+salt = randomBytes()
+hash = sha256(password + salt)
+store: { hash, salt }
+
+
+👉 You must:
+
+Generate salt
+
+Store salt separately
+
+Re-hash correctly
+
+Tune security yourself
+```
+### What the modern libraries Do
+
+```
+automatic way (bcrypt / argon2 / scrypt)
+hash = bcrypt.hash(password)
+Behind the scenes:
+Generates random salt ✅
+Embeds salt inside hash ✅
+Stores cost parameters ✅
+Handles verification safely ✅
+Example bcrypt hash: $2b$10$N9qo8uLOickgx2ZMRZo5i.e8VvX...
+
+
+That string already contains:
+Algorithm, Cost, Salt, Hash
+```
+
+### bcrypt Most commanly userd for production and recomonded for password
+### scrypt Stronger than bcrypt in some cases. Used in: Cryptocurrencies, High-security systems
+### argon2 (🔥 BEST) Winner of Password Hashing Competition (PHC).
+
+```
+### What should Use
+🥇 argon2id (best)
+
+🥈 bcrypt (industry standard)
+
+🥉 scrypt (security-focused apps)
+
+❌What Should Never Use:
+
+MD5, SHA-1, SHA-256 (for passwords)
+
+```
+
+```
+### what Occuer when MD5, SHA-1, SHA-256
+GPU bolta hai:
+“Ruk, 10 crore passwords 1 sec me try kar deta hoon”
+Isliye unsalted fast hashes = dead security.
+
+To password security me GPU ko kaise harate hain? 🛡️
+Trick #1: Slow hashing
+bcrypt, argon2
+
+Trick #2: Memory-hard
+Zyada RAM chahiye
+GPU ke paas kam RAM per core
+Trick #3: Salt
+Har user ka alag game
+Precomputed attacks fail
+```
+
+```
+Important points
+Matlab: Future me computers fast ho gaye?
+👉 Tum cost badha doge
+👉 Hashing aur slow ho jayegi
+
+bcrypt me:Sirf cost factor and Memory control ❌
+```
+
+```
+ˇ| Term          | Matlab                  | Kyu important       |
+| ------------- | ----------------------- | ------------------- |
+| Memory-hard   | Zyada RAM use           | GPU slow            |
+| GPU resistant | GPU ineffective         | Mass cracking rukta |
+| Configurable  | Security tune kar sakte | Future-proof        |
+
+```
+
+
+
+
+
+
 
 
 
