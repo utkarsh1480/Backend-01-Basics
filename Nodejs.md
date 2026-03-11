@@ -754,7 +754,69 @@ Phir bhi Express aage ja raha hai
 Error: Cannot set headers after they are sent to the client
 ```
 
+```JS
+rrow functions do not have their own this. They inherit this from the parent scope, so in cases like object methods, constructors, or event handlers we use normal functions.
+const person = {
+  age: 22,
+  showAge: () => {
+    console.log(this.age);
+  }
+};
+person.showAge();
+Output:
+undefined
+Why?
+Because arrow functions do not create their own this.
+Instead they inherit this from the parent scope.
+In this case the parent scope is the global scope.
+So internally it behaves like:
+window.age(or global.age in Node.js)
+Since no such variable exists:
+undefined
+```
 ###Express Commom Error
+
+###Bcrypt Implementation
+
+```js
+const Bcrypt = requie('bcrypt');
+const password = "mypassword";
+async function hashPassword() {
+    const saltRounds = 10 
+    const hashedPassword = await bcrypt.hash(password, saltRounds){
+    console.log("Hashed Password:", hashedPassword);
+}
+hashPassword();
+```
+###Method 2
+```js
+const Bcrypt = requie('bcrypt');
+bcrypt.genSalt(10, function(error, salt) {
+brcypt.hash(passward, salt, function(error , hash){
+if(error) return res.send(eror.message)
+else res.send(hash);
+
+ --------------------------------- Login -------------------------------------------
+```JS
+const bcrypt = require("bcrypt");
+
+const enteredPassword = "mypassword";
+const storedHash = "$2b$10$9d8fFhH8b6X...";
+
+async function verifyPassword() {
+    const result = await bcrypt.compare(enteredPassword, storedHash);
+
+    if(result){
+        console.log("Password Match ✅");
+    } else {
+        console.log("Invalid Password ❌");
+    }
+}
+
+verifyPassword();
+```
+```
+
 
 
 
