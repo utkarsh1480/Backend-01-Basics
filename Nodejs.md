@@ -774,9 +774,9 @@ window.age(or global.age in Node.js)
 Since no such variable exists:
 undefined
 ```
-###Express Commom Error
+### Express Commom Error
 
-###Bcrypt Implementation
+### Bcrypt Implementation
 
 ```js
 const Bcrypt = requie('bcrypt');
@@ -788,7 +788,7 @@ async function hashPassword() {
 }
 hashPassword();
 ```
-###Method 2
+### Method 2
 ```js
 const Bcrypt = requie('bcrypt');
 bcrypt.genSalt(10, function(error, salt) {
