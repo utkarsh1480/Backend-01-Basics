@@ -108,6 +108,18 @@ search=somethind - query parameter
 -- Node js by default not seprate the url for this we use url module --
 
 --- because Express is already doing the URL parsing for you. That's why in your projects you mostly write req.query and don't touch the url module. ---
+```JS
+Traditional Way to get uRl parameter
+
+const http = require("http");
+const url = require("url");
+
+const server = http.createServer((req, res) => {
+    const parsedUrl = url.parse(req.url, true);
+
+    console.log(parsedUrl.query);
+});
+```
 
 ```js
 const url = require("url');
@@ -156,6 +168,34 @@ Example: 'query=string' or {'query':'string'}
 
 Example: '#hash'
 ```
+```
+because Express is already doing the URL parsing for you. That's why in your projects you mostly write req.query and don't touch the url module.
+/user/123?name=Mango -- how to extract information 
+
+app.get("/user/:id", (req, res) => {
+    console.log("Params:", req.params);
+    console.log("Query:", req.query);
+
+    console.log("ID:", req.params.id);
+    console.log("Name:", req.query.name);
+});
+
+For:
+
+/user/123?name=Mango
+
+Output:
+
+Params: { id: '123' }
+Query: { name: 'Mango' }
+
+ID: 123
+Name: Mango
+
+req.body = data sent inside POST/PUT/PATCH request body.
+req.params.id normally returns a string.
+```
+
 
 --Req.query--
 req.query is an object, but all query parameter values are strings because URLs transmit text only.
