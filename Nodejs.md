@@ -107,6 +107,8 @@ search=somethind - query parameter
 
 -- Node js by default not seprate the url for this we use url module --
 
+--- because Express is already doing the URL parsing for you. That's why in your projects you mostly write req.query and don't touch the url module. ---
+
 ```js
 const url = require("url');
 ```
