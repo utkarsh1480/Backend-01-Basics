@@ -195,7 +195,56 @@ Name: Mango
 req.body = data sent inside POST/PUT/PATCH request body.
 req.params.id normally returns a string.
 ```
+```JS
+But HOW does clicking the filter send the query?
 
+This is the important part.
+
+Suppose React has:
+
+const [filters, setFilters] = useState({
+    brand: "",
+    minPrice: "",
+    maxPrice: "",
+    rating: ""
+});
+
+When user selects Samsung:
+
+setFilters({
+    ...filters,
+    brand: "Samsung"
+});
+
+Then frontend sends a request using Axios:
+
+axios.get("/products", {
+    params: {
+        brand: "Samsung",
+        minPrice: 10000,
+        maxPrice: 20000,
+        rating: 4
+    }
+});
+
+Axios automatically converts that into:
+
+/products?brand=Samsung&minPrice=10000&maxPrice=20000&rating=4
+
+Backend:
+
+app.get("/products", async (req, res) => {
+
+    const { brand, minPrice, maxPrice, rating } = req.query;
+
+    console.log(brand);
+    console.log(minPrice);
+    console.log(maxPrice);
+    console.log(rating);
+
+});
+
+```
 
 --Req.query--
 req.query is an object, but all query parameter values are strings because URLs transmit text only.
