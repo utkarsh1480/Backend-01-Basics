@@ -45,6 +45,35 @@ Node.js resolves modules in this order:
 + import: static and resolved at compile time
 ```
 
+```JS
+Difference with example 
+
+Ek line mein difference
+
+Imagine tum restaurant mein ho:
+
+require
+
+Tum waiter ko bolte ho:
+
+"Jab situation aaye, tab jo dish chahiye woh le aana."
+
+Runtime par decide ho sakta hai.
+
+if (hungry) {
+    const food = require("./food");
+}
+import
+
+Order pehle hi de diya:
+
+"Mujhe ye dish chahiye."
+
+import food from "./food.js";
+
+Program start hone se pehle dependency known hai.
+
+```
  Because without ./, Node looks inside node_modules, not current directory. 
 ```js
 Node resolves modules by checking core modules, local files, and then node_modules upward.
