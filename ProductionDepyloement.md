@@ -16,6 +16,22 @@ The user doesn't directly communicate with the backend server.
 ```JS
 Why do we use a proxy server?
 1: to Hide Client Ip -followUp 
+2: protect client 
+3 : 2. Control access
+Companies/colleges can use proxies to control which websites users can access.
+
+Employee → Proxy → Internet
+                    ↓
+              Block Facebook
+4: Caching
+A proxy can cache frequently requested content.
+
+Client → Proxy
+          ↓
+       Cached data
+5 :Monitoring
+Organizations can use proxies to monitor and log network traffic.
+```
 ```
 how it hide client Ip : 
 With a proxy
@@ -37,21 +53,4 @@ Client                Proxy                 Google
 The important part is this:
 Proxy hides your IP from the destination, but the proxy itself can know your IP.
 The proxy creates/forwards a separate connection to Google.
-```
-
-2: protect client 
-3 : 2. Control access
-Companies/colleges can use proxies to control which websites users can access.
-
-Employee → Proxy → Internet
-                    ↓
-              Block Facebook
-4: Caching
-A proxy can cache frequently requested content.
-
-Client → Proxy
-          ↓
-       Cached data
-5 :Monitoring
-Organizations can use proxies to monitor and log network traffic.
 ```
