@@ -1,3 +1,4 @@
+SSH Connection : ssh -i ~/.ssh/coder-bazar-key.pem ubuntu@13.201.226.227
 ### Proxy Server - A proxy server is a middleman between the client and the internet/server.
 ### With a proxy:
 
