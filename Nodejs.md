@@ -82,6 +82,36 @@ Core modules don’t need installation, npm packages do.
 ```
 
 
+### About path module
+
+```
+The Node.js path module is a built-in module used to handle file and directory paths in a cross-platform way. It provides methods like join(), resolve(), basename(), dirname(), and extname() to manipulate paths safely across different operating systems."
+
+Remember: path handles path strings; fs handles actual file-system operations.
+What is path.resolve() in Node.js?
+path.resolve() is a method of Node.js's built-in path module that converts a sequence of path segments into an absolute path.
+In simple words, it tells you the complete location of a file or directory on your computer.
+
+
+import path from "node:path";
+
+const filePath = path.resolve("uploads/image.png");
+
+console.log(filePath); 
+
+// Outout : /Users/utkarsh/my-project/uploads/image.png
+
+const websiteWorkspace = path.resolve("generated-sites");
+
+website-builder/
+├── server.js
+├── src/
+├── uploads/
+└── generated-sites/
+
+And your current working directory is:
+/Users/utkarsh/website-builder
+```
 ```js
 ---Basic Server Creation---
 
