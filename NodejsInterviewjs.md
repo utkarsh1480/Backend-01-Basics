@@ -77,6 +77,70 @@ Difference between process.nextTick(), Promise, and setImmediate() in Node.js
 All three are used to schedule asynchronous callbacks in Node.js, but the main difference is WHEN their callbacks execute.
 
 ```
+```
+how does a Promise differ from a callback?
+Callbacks are just functions passed into another function to run later, no built-in success or failure state. Promises, wrap that async result and give you resolve and reject
+
+
+what's the event loop's role when there's a lot of concurrent requests?
+
+It keeps the server responsive by juggling tasks, not blocking on one request. So even under load, it can start handling the next available work. Nice pacing, you're doing great.
+```
+
+```
+why JWT 
+The problem: HTTP is stateless
+HTTP is a stateless protocol.
+It means the server doesn't automatically remember previous requests made by a client.
+
+One solution: Send email and password every time?
+We could ask the user to send their email and password with every request.
+
+
+Another solution: Sessions
+Before understanding JWT, let's understand traditional session-based authentication.
+
+Here's how it works:
+1. User logs in.
+2. Backend verifies credentials.
+3. Backend creates a session and stores it on the server.
+4. Backend sends a session ID to the browser in a cookie.
+5. Browser sends that session ID with future requests.
+6. Backend looks up the session ID to identify the user.
+
+Problem with this : For example, imagine you have three backend servers.
+- Server 1
+- Server 2
+- Server 3
+A user logs in through Server 1, but their next request reaches Server 2.
+
+Server 2 must be able to access the session created by Server 1, usually through a shared session store such as Redis.
+
+
+```
+```
+
+JWT Json Web Token
+It is a compact, digitally signed token used to securely transmit information between a client and a server.
+In authentication, JWT is commonly used to prove that a user has successfully logged in.
+Imagine a user logs into your e-commerce application.
+1. User enters email and password.
+2. Backend verifies the credentials.
+3. Backend generates a JWT.
+4. Backend sends the token to the frontend.
+5. Frontend sends the token with future requests.
+6. Backend verifies the token and identifies the user.
+This way, the user doesn't need to enter their password for every request.
+Important interview point: JWT is encoded, not encrypted by default. Anyone who obtains a JWT can decode its payload. Never store passwords, secret keys or sensitive personal information inside it.
+
+how it verify tokens
+1. Backend receives the request.
+2. Middleware extracts the JWT from the cookie.
+3. jwt.verify() verifies its signature and expiration.
+4. If valid, decoded user information is attached to req.user.
+5. next() passes control to the next middleware or controller.
+6. If invalid or expired, the backend returns an unauthorized response.
+```
 
 
 
